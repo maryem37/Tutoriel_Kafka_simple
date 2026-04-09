@@ -1,7 +1,9 @@
 # Tutoriel_Kafka_simple
 Tutoriel complet pour débutants sur Apache Kafka incluant l'installation, la configuration en mode KRaft, la création de topics, l'utilisation des producers et consumers, ainsi que les commandes essentielles pour la gestion de Kafka.
 
- #activer kafka
+---
+
+## 1. Activer Kafka
 
     C:\kafka1\kafka1\bin\windows>kafka-storage.bat random-uuid
     Exx9yhoRReeG4XgdWaUemQ
@@ -13,8 +15,8 @@ Tutoriel complet pour débutants sur Apache Kafka incluant l'installation, la co
     C:\kafka1\kafka1\bin\windows>kafka-server-start.bat C:/kafka1/kafka1/config/kraft/server.properties
 
 ouvrir un nouveaux terminal
-
-#Créer un topic
+---
+#2.Créer un topic
 
     cd C:\kafka1\kafka1\bin\windows
     
@@ -28,12 +30,16 @@ rem Voir les détails
 
     kafka-topics.bat --describe --topic commandes --bootstrap-server localhost:9092
 
-#Terminal 3 — Consumer (bloqué en attente) ouvrir un3 eme terminal
+---
+#3.Terminal 3 — Consumer (bloqué en attente) ouvrir un3 eme terminal
 
     cd C:\kafka1\kafka1\bin\windows
     
     kafka-console-consumer.bat --topic commandes --bootstrap-server localhost:9092 --group groupe-A --from-beginning --property print.key=true --property print.offset=true --property key.separator=" | "
-#Terminal 2 — Lancer le Producer
+
+ ---
+ 
+#4.Terminal 2 — Lancer le Producer
 
     kafka-console-producer.bat --topic commandes --bootstrap-server localhost:9092 --property "parse.key=true" --property "key.separator=:"
 Tape tes messages :
@@ -48,6 +54,8 @@ Tape tes messages :
 ==> Regarde Terminal 3 — chaque message apparaît avec sa clé et son offset.
 Quand tu as fini : Ctrl+C pour quitter le producer.
 
+---
+
 #Terminal 2 — Inspecter après envoi
 Maintenant que le producer est arrêté, le Terminal 2 est libre. Lance ces commandes :
 rem Lister les groupes
@@ -56,6 +64,8 @@ rem Lister les groupes
 rem Voir les offsets et le lag du groupe-A
 
     kafka-consumer-groups.bat --bootstrap-server localhost:9092 --group groupe-A --describe
+
+ ---
 #Terminal 3 — Tester le lag
 Arrête le consumer avec Ctrl+C, puis dans Terminal 2 relance le producer :
 
@@ -81,7 +91,12 @@ Il relit tout depuis le début et rattrape les messages manqués.
 Arrête le consumer Terminal 3 avec Ctrl+C, puis :
 
     kafka-consumer-groups.bat --bootstrap-server localhost:9092 --group groupe-A --topic commandes --reset-offsets --to-earliest --execute
+
+ ---
+ 
 #Ce qu'on a prouvé concrètement
+
+---
 
 #Quand tu as tapé client-1:commande iPhone dans le producer et que ça est apparu dans le consumer, tu as prouvé que :
 
@@ -89,6 +104,8 @@ le producer ne connaît pas l'adresse du consumer
 le consumer ne connaît pas l'adresse du producer
 les deux parlent uniquement avec localhost:9092
 le broker est le seul intermédiaire
+
+---
 
 #Preuve 2 — Le découplage temporel (le plus important)
 En faisant Ctrl+C sur le consumer puis en envoyant 3 messages, tu as prouvé que :
