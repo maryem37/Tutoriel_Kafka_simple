@@ -16,7 +16,7 @@ Tutoriel complet pour débutants sur Apache Kafka incluant l'installation, la co
 
 ouvrir un nouveaux terminal
 ---
-#2.Créer un topic
+##2.Créer un topic
 ---
 
     cd C:\kafka1\kafka1\bin\windows
@@ -32,7 +32,7 @@ rem Voir les détails
     kafka-topics.bat --describe --topic commandes --bootstrap-server localhost:9092
 
 ---
-#3.Terminal 3 — Consumer (bloqué en attente) ouvrir un3 eme terminal
+##3.Terminal 3 — Consumer (bloqué en attente) ouvrir un3 eme terminal
 ---
     cd C:\kafka1\kafka1\bin\windows
     
@@ -40,7 +40,7 @@ rem Voir les détails
 
  ---
  
-#4.Terminal 2 — Lancer le Producer
+##4.Terminal 2 — Lancer le Producer
 ---
     kafka-console-producer.bat --topic commandes --bootstrap-server localhost:9092 --property "parse.key=true" --property "key.separator=:"
 Tape tes messages :
@@ -57,7 +57,7 @@ Quand tu as fini : Ctrl+C pour quitter le producer.
 
 ---
 
-#Terminal 2 — Inspecter après envoi
+##Terminal 2 — Inspecter après envoi
 Maintenant que le producer est arrêté, le Terminal 2 est libre. Lance ces commandes :
 rem Lister les groupes
 
@@ -67,7 +67,7 @@ rem Voir les offsets et le lag du groupe-A
     kafka-consumer-groups.bat --bootstrap-server localhost:9092 --group groupe-A --describe
 
  ---
-#Terminal 3 — Tester le lag
+##Terminal 3 — Tester le lag
 Arrête le consumer avec Ctrl+C, puis dans Terminal 2 relance le producer :
 
     kafka-console-producer.bat --topic commandes --bootstrap-server localhost:9092
@@ -81,7 +81,7 @@ Ctrl+C pour quitter le producer, puis inspecte le lag :
 
 <img width="1222" height="172" alt="image" src="https://github.com/user-attachments/assets/b3d44566-58d2-45f4-bba8-979261263c6c" />
 
-#Terminal 3 — Rattraper le lag (replay)
+##Terminal 3 — Rattraper le lag (replay)
 Relance le consumer dans Terminal 3 :
 
     kafka-console-consumer.bat --topic commandes --bootstrap-server localhost:9092 --group groupe-A --from-beginning --property print.key=true --property print.offset=true --property key.separator=" | "
@@ -95,11 +95,11 @@ Arrête le consumer Terminal 3 avec Ctrl+C, puis :
 
  ---
  
-#Ce qu'on a prouvé concrètement
+##Ce qu'on a prouvé concrètement
 
 ---
 
-#Quand tu as tapé client-1:commande iPhone dans le producer et que ça est apparu dans le consumer, tu as prouvé que :
+##Quand tu as tapé client-1:commande iPhone dans le producer et que ça est apparu dans le consumer, tu as prouvé que :
 
 le producer ne connaît pas l'adresse du consumer
 le consumer ne connaît pas l'adresse du producer
@@ -117,7 +117,8 @@ le broker les a stockés sur disque sans attendre personne
 
 C'est la différence fondamentale avec un appel HTTP — si le serveur est down, HTTP échoue. Kafka, lui, garde les messages.
 
-#La grande différence avec les autres systèmes
+##La grande différence avec les autres systèmes
+---
 SystèmeQue se passe-t-il si le consommateur est absent ?
 HTTP/RESTLa requête échoue, le message est perdu
 RabbitMQMessage en queue, supprimé après lecture
