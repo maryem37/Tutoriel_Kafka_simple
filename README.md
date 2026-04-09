@@ -127,9 +127,13 @@ C'est la différence fondamentale avec un appel HTTP — si le serveur est down,
 La grande différence avec les autres systèmes
 ---
 SystèmeQue se passe-t-il si le consommateur est absent ?
-HTTP/RESTLa requête échoue, le message est perdu
-RabbitMQMessage en queue, supprimé après lecture
-KafkaMessage persisté sur disque, relu quand on veut
+
+        | Système   | Que se passe-t-il si le consommateur est absent ? |
+        | --------- | ------------------------------------------------- |
+        | HTTP/REST | La requête échoue, le message est perdu           |
+        | RabbitMQ  | Message en queue, supprimé après lecture          |
+        | Kafka     | Message persisté sur disque, relu quand on veut   |
+
 
 
 https://github.com/user-attachments/assets/181be91b-a7b1-42e9-89ce-6b3bf7f8e27a
