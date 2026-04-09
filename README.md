@@ -17,6 +17,7 @@ Tutoriel complet pour débutants sur Apache Kafka incluant l'installation, la co
 ouvrir un nouveaux terminal
 ---
 #2.Créer un topic
+---
 
     cd C:\kafka1\kafka1\bin\windows
     
@@ -32,7 +33,7 @@ rem Voir les détails
 
 ---
 #3.Terminal 3 — Consumer (bloqué en attente) ouvrir un3 eme terminal
-
+---
     cd C:\kafka1\kafka1\bin\windows
     
     kafka-console-consumer.bat --topic commandes --bootstrap-server localhost:9092 --group groupe-A --from-beginning --property print.key=true --property print.offset=true --property key.separator=" | "
@@ -40,7 +41,7 @@ rem Voir les détails
  ---
  
 #4.Terminal 2 — Lancer le Producer
-
+---
     kafka-console-producer.bat --topic commandes --bootstrap-server localhost:9092 --property "parse.key=true" --property "key.separator=:"
 Tape tes messages :
 
